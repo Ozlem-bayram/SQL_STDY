@@ -1,0 +1,180 @@
+--CREATE TABLE EmployeeINFO
+--(EmployeeID int,
+--FirstName varchar(50),
+--LastName varchar(50),
+--Age int, 
+--Gender varchar(50),
+--) 
+--INSERT INTO EmployeeINFO VALUES
+--(1001, 'Jim','Halpert', 30, 'Male'),
+--(1002, 'Pam','Laes', 30, 'Female'),
+--(1003, 'Cam','Halpt', 41, 'Male'),
+--(1004, 'Hem','Haert', 30, 'Female'),
+--(1005, 'Leam','Halrt', 30, 'Male'),
+--(1006, 'Tom','Halpe', 29, 'Male'),
+--(1007, 'Bom','Halt', 30, 'Female'),
+--(1008, 'Kevin','Hal', 30, 'Male'),
+--(1009, 'Tem','Hulprt', 32, 'Female')
+--CREATE TABLE EmployeeSalary
+--(EmployeeID int,
+--JobTitle varchar(50),
+--Salary int,
+--)
+--INSERT INTO EmployeeSalary VALUES
+--(1001, 'Salesman', 45000),
+--(1002, 'Salesman', 55000),
+--(1003, 'Salesman', 25000),
+--(1004, 'Salesman', 35000),
+--(1005, 'HR', 40000),
+--(1006, 'Salesman', 60000),
+--(1007, 'Acountant', 42000),
+--(1008, 'Salesman', 41000),
+--(1009, 'Salesman', 43000)
+--SELECT FirstName, LastName, JobTitle, Salary,
+--CASE
+--	WHEN JobTitle='Salesman' THEN Salary + (Salary* .10)
+--	WHEN JobTitle='Accountant' THEN Salary + (Salary* .05)
+--	WHEN JobTitle='HR' THEN Salary + (Salary* .000001)
+--	ELSE Salary+(Salary* .03)
+--	END AS SalaryAfterRaise
+--FROM SQLLESSON1.dbo.EmployeeINFO  
+--JOIN SQLLESSON1.dbo.EmployeeSalary
+--	ON EmployeeINFO.EmployeeID = EmployeeSalary.EmployeeID
+--SELECT JobTitle, COUNT(JobTitle)
+--FROM SQLLESSON1.dbo.EmployeeINFO  
+--JOIN SQLLESSON1.dbo.EmployeeSalary
+--	ON EmployeeINFO.EmployeeID = EmployeeSalary.EmployeeID
+--GROUP BY JobTitle
+--HAVING AVG(Salary) > 30000
+--ORDER BY AVG(Salary)
+--SELECT * 
+--FROM SQLLESSON1.dbo.EmployeeINFO 
+--UPDATE SQLLESSON1.dbo.EmployeeINFO 
+--SET Age= 31, Gender='Female'
+--WHERE EmployeeID=1005
+
+--DELETE FROM SQLLESSON1.dbo.EmployeeINFO 
+--WHERE EmployeeID=1007
+--SELECT INFO.EmployeeID, Sal.Salary
+--FROM [SQLLESSON1].[dbo].[EmployeeINFO] AS INFO 
+--join [SQLLESSON1].[dbo].[EmployeeSalary] AS Sal
+--	on INFO.EmployeeID = Sal.EmployeeID
+--SELECT INFO.EmployeeID, INFO.FirstName, INFO.FirstName,
+--	Sal.JobTitle, Ware.Age
+--SELECT INFO.EmployeeID, Sal.Salary
+--FROM [SQLLESSON1].[dbo].EmployeeINFO a
+--left join [SQLLESSON1].[dbo].EmployeeSalary b 
+--	on a.EmployeeID=b.EmployeeID
+--left join [SQLLESSON1].[dbo].WareHouseEmployeeINFO c 
+--	on a.EmployeeID = c.EmployeeID
+--SELECT FirstName, LastName, Gender, Salary,
+--     COUNT(Gender) OVER ( PARTITION BY Gender) as TotalGender
+--FROM SQLLESSON1.dbo.EmployeeINFO INFO
+--join SQLLESSON1.dbo.EmployeeSalary sal
+--	on INFO.EmployeeID = sal.EmployeeID 
+--SELECT FirstName, LastName, Gender, Salary,COUNT(Gender) 
+--FROM SQLLESSON1.dbo.EmployeeINFO INFO
+--join SQLLESSON1.dbo.EmployeeSalary sal
+--	on INFO.EmployeeID = sal.EmployeeID 
+--GROUP BY FirstName, LastName, Gender, Salary
+--WITH CTE_Employee as 
+--(SELECT FirstName, LastName, Gender, Salary, 
+--COUNT (Gender) OVER (PARTITION BY Gender) as TotalGender,
+--AVG (Salary) OVER (PARTITION BY Gender) as AvgSalary
+--FROM SQLLESSON1.dbo.EmployeeINFO emp
+--join SQLLESSON1.dbo.EmployeeSalary sal
+--	ON emp.EmployeeID = sal.EmployeeID 
+--WHERE Salary >'40000' 
+--)
+--SELECT * 
+--FROM CTE_Employee
+--CREATE TABLE #temp_Employee 
+--(EmployeeID int, 
+--JobTitle varchar(100),
+--Salary int ) 
+-- INSERT INTO #temp_Employee  
+--SELECT * 
+--FROM SQLLESSON1..employeeSalary
+--CREATE TABLE EmployeeErrors (
+--EmployeeID varchar(50)
+--,FirstName varchar(50)
+--,LastName varchar(50)
+--)
+
+--Insert into EmployeeErrors Values 
+--('1001  ', 'Jimbo', 'Halbert')
+--,('  1002', 'Pamela', 'Beasely')
+--,('1005', 'TOby', 'Flenderson - Fired')
+
+--Select *
+--From EmployeeErrors
+-- Select EmployeeID, TRIM(employeeID) AS IDTRIM
+--FROM EmployeeErrors 
+
+--Select EmployeeID, RTRIM(employeeID) as IDRTRIM
+--FROM EmployeeErrors 
+
+--Select EmployeeID, LTRIM(employeeID) as IDLTRIM
+--FROM EmployeeErrors 
+--Select LastName, REPLACE(LastName, '- Fired', '') as LastNameFixed
+--FROM EmployeeErrors
+--Select Substring(err.FirstName,1,3), Substring(INFO.FirstName,1,3), Substring(err.LastName,1,3), Substring(INFO.LastName,1,3)
+--FROM EmployeeErrors err
+--JOIN EmployeeINFO INFO
+--	on Substring(err.FirstName,1,3) = Substring(INFO.FirstName,1,3)
+--	and Substring(err.LastName,1,3) = Substring(INFO.LastName,1,3)
+--Select firstname, LOWER(firstname)
+--from EmployeeErrors
+
+--Select Firstname, UPPER(FirstName)
+--from EmployeeErrors
+
+--CREATE PROCEDURE TEST 
+--AS 
+--SELECT *					-- BU KODU YAZDIKTAN SONRA EXECUTE YAPIP 
+--FROM EmployeeINFO			-- SQLLESSON1 ÝÇÝNDEKÝ "PROGRAMMABILITY ÝÇÝNDE STORED PROCEDURES
+--							 DOSYASINI REFRESH YAPMAK VE BÖYLE CE DOSYA OLUÞMUÞ OLACAKTIR. 
+--EXEC TEST
+
+--Insert into #temp_employee3
+--SELECT JobTitle, Count(JobTitle), Avg(Age), AVG(salary)
+--FROM SQLTutorial..EmployeeDemographics emp
+--JOIN SQLTutorial..EmployeeSalary sal
+--	ON emp.EmployeeID = sal.EmployeeID
+--where JobTitle = @JobTitle --- make sure to change this in this script from original above
+--group by JobTitle
+
+--Select * 
+--From #temp_employee3
+--GO;
+
+
+--exec Temp_Employee2 @jobtitle = 'Salesman'
+--exec Temp_Employee2 @jobtitle = 'Accountant'
+--Select EmployeeID, Salary, (Select AVG(Salary) From EmployeeSalary) as AllAvgSalary
+--From EmployeeSalary
+--Select EmployeeID, Salary, AVG(Salary) over () as AllAvgSalary
+--From EmployeeSalary
+--Select EmployeeID, Salary, AVG(Salary) as AllAvgSalary
+--From EmployeeSalary
+--Group By EmployeeID, Salary
+--order by EmployeeID
+--Select a.EmployeeID, AllAvgSalary
+--From 
+--	(Select EmployeeID, Salary, AVG(Salary) over () as AllAvgSalary
+--	 From EmployeeSalary) a
+--Order by a.EmployeeID
+--Select a.EmployeeID, AllAvgSalary
+--From 
+--	(Select EmployeeID, Salary, AVG(Salary) over () as AllAvgSalary
+--	 From EmployeeSalary) a
+--Order by a.EmployeeID
+
+--Select EmployeeID, JobTitle, Salary
+--From EmployeeSalary
+--where EmployeeID in (
+--	Select EmployeeID 
+--	From EmployeeINFO
+--	where Age > 30)
+
+
